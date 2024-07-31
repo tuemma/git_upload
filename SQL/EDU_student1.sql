@@ -12,7 +12,7 @@ create table table2
   column_D VARCHAR2(20)
 );
 
-/*Åã¥Ü¸ê®Æµ²ºc*/
+/*é¡¯ç¤ºè³‡æ–™çµæ§‹*/
 desc SQL_EMP;  
 
 select EMP_ID,EMP_NM from SQL_EMP;
@@ -34,33 +34,32 @@ create table SQL_CUSTOMER_test(
 alter table SQL_CUSTOMER_test
  add foreign key (EMP) references SQL_EMP_test(EMP_ID);
 
-create index SQL_EMP_INDEX1 on SQL_EMP_test(DEP) --·s¼W¯Á¤Ş
+create index SQL_EMP_INDEX1 on SQL_EMP_test(DEP) --æ–°å¢ç´¢å¼•
 
-select EMP_ID as ½s¸¹, EMP_NM as ¦WºÙ from SQL_EMP;
+select EMP_ID as ç·¨è™Ÿ, EMP_NM as åç¨± from SQL_EMP;
 
-
+/*èª²å ‚ç·´ç¿’4*/
 create table WATER1 as select * from SQL_TAOYUAN_WATER
-
 select 
- SERIAL_NUMBER as §Ç¸¹,
- HYDROGEN as ²BÂ÷¤l¿@«×«ü¼Æ,
- TURBIDITY as ¿B«×,
- CHLORINE as  ¦Û¥Ñ¦³®Ä¾l®ğ from WATER1;
+ SERIAL_NUMBER as åºè™Ÿ,
+ HYDROGEN as æ°«é›¢å­æ¿ƒåº¦æŒ‡æ•¸,
+ TURBIDITY as æ¿åº¦,
+ CHLORINE as  è‡ªç”±æœ‰æ•ˆé¤˜æ°£ from WATER1;
  
-/*ÅŞ¿è¹Bºâ¤l*/
+/*é‚è¼¯é‹ç®—å­*/
 select * from SQL_EMP
- where DEP='¨t²Î¶}µo³¡' and EMP_NM like'¤ı%';
+ where DEP='ç³»çµ±é–‹ç™¼éƒ¨' and EMP_NM like'ç‹%';
  
 select * from SQL_EMP
- where DEP='¨t²Î¶}µo³¡' or DEP='¶}µo¨t²Î³¡';
+ where DEP='ç³»çµ±é–‹ç™¼éƒ¨' or DEP='é–‹ç™¼ç³»çµ±éƒ¨';
  
 select * from SQL_EMP
  where
-  (DEP='¨t²Î¶}µo³¡' and EMP_NM like'¤ı%')
+  (DEP='ç³»çµ±é–‹ç™¼éƒ¨' and EMP_NM like'ç‹%')
  or
-  (DEP='¶}µo¨t²Î³¡' and EMP_NM like'®]%'):
+  (DEP='é–‹ç™¼ç³»çµ±éƒ¨' and EMP_NM like'å­«%'):
 
-/*¯S®í¹Bºâ¤l*/
+/*ç‰¹æ®Šé‹ç®—å­*/
 select * from CARS
  where MIN_PRICE between '300' and '600'
  
@@ -82,7 +81,7 @@ select * from SQL_EMP_test
  where ID is null
  and EMP_NM is not null
   
-/*½Ò°ó½m²ß5*/
+/*èª²å ‚ç·´ç¿’5*/
 select SERIAL_NUMBER,HYDROGEN,TURBIDITY,CHLORINE
 from SQL_TAOYUAN_WATER
  where HYDROGEN in ('7.5','8')
@@ -97,7 +96,7 @@ from SQL_TAOYUAN_WATER
   and TURBIDITY = '0.6')
 
 
-/*½Ò°ó½m²ß6*/
+/*èª²å ‚ç·´ç¿’6*/
 select distinct PLACE,SERIAL_NUMBER,HYDROGEN,TURBIDITY,CHLORINE
 from SQL_TAOYUAN_WATER
  where (SERIAL_NUMBER between '521' and '529') 
@@ -125,7 +124,7 @@ select EMP_NM,ID
  from SQL_EMP;
 
 
-/*½Ò°ó½m²ß7*/
+/*èª²å ‚ç·´ç¿’7*/
 select PLACE,SERIAL_NUMBER,HYDROGEN,TURBIDITY,CHLORINE
 from(
 select distinct PLACE,SERIAL_NUMBER,HYDROGEN,TURBIDITY,CHLORINE
@@ -164,7 +163,7 @@ from SQL_CUSTOMER CUT
 left join SQL_EMP EMP on CUT.EMP=EMP.EMP_ID
 left join SQL_DEP DEP on EMP.DEP=DEP.DEP
 
-/*½Ò°ó½m²ß8*/
+/*èª²å ‚ç·´ç¿’8*/
 select DATA.PLACE,DATA.SERIAL_NUMBER,DATA.HYDROGEN,DATA.TURBIDITY,DATA.CHLORINE,WS.WATER_PURIFICATION_PLANT,WS.WATER_SUPPLY,RE.TOWNSHIP
 from(
 select distinct PLACE,SERIAL_NUMBER,HYDROGEN,TURBIDITY,CHLORINE,WATER_SYSTEM
