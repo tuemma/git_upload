@@ -36,9 +36,13 @@ alter table SQL_CUSTOMER_test
 
 create index SQL_EMP_INDEX1 on SQL_EMP_test(DEP) --新增索引
 
+<<<<<<< HEAD
+/*�Ұ�m��4*/
+=======
 select EMP_ID as 編號, EMP_NM as 名稱 from SQL_EMP;
 
 /*課堂練習4*/
+>>>>>>> b222e9601160d6f624a4c5dbf07e800520f0b1e8
 create table WATER1 as select * from SQL_TAOYUAN_WATER
 select 
  SERIAL_NUMBER as 序號,
@@ -66,9 +70,6 @@ select * from CARS
 select * from CARS
  where MIN_PRICE in ('300','600')
 
-select * from CARS
- where MIN_PRICE in ('300','600')
- 
 select * from CARS
  where MIN_PRICE in ('300','600')
  or PRICE='800'
