@@ -1,0 +1,155 @@
+<html>
+
+<head>
+    <script text="javascript">
+
+        /*1-1*/
+        // for(var i = 1;i < 10;i++ ){
+        //     console.log(i);
+        // }
+
+        /*1-1*/
+        // var j=1;
+        // while(j<=9){
+        //     console.log(j);
+        //     j++;
+        // }
+
+        /*1-2*/
+        // for(var i = 1; i <= 100; i++ ){
+        //     if((i%3==0)&&(i%5!=0)){
+        //             console.log(i);
+        //     }
+        // }
+
+        /*1-2*/
+        // for(var i=1;i<=100; i++){
+        //     if((i%3!=0) || (i%5==0)){
+        //         continue;
+        //     }
+        //     console.log(i);
+        // }
+
+        /*小試身手*/
+        // var key1='test';
+        // var obj={'key':key1,key1:'key'};
+        // for (var temKey in obj){
+        //     console.log(temKey + ":" +obj[temKey]);
+        // }  
+
+        // var key='test';
+        // var obj={'key':key,key:'key'};
+        // for (var temKey in obj){
+        //     console.log(temKey + ":" +obj[temKey]);
+        // }
+
+        // var array1 = [];
+        // var array2 = array1;
+        // array2.push('123');
+        // console.log(array1.length);
+
+        /*2-1*/
+        // var obj = {
+        //     name : '幸運兒',
+        //     age : 20,
+        //     lottoty : [1,5,29,41,37,15]
+        // };
+
+        // for(var s in obj){
+        //     console.log(s + '=' + obj[s]);
+        // };
+        // console.log(obj);
+
+        /*2-2*/
+        // var origin = {'王大明':89, '張小美':97, '李鐵柱':18, '謝小天':22};
+
+        // for (score in origin){
+        //     var after =  origin[score] +5;
+        //     if(after >100){
+        //         after =100;
+        //     }  //after = after >100 ? 100 : origin[score]+5
+        //     console.log(score + "=" + after);
+        // }
+
+        /*小試身手*/
+        // var func = function(str){
+        //     console.log('func = ' + str);
+        // }
+
+        // function func(str,str2){
+        //     console.log('func ovveride = ' + str);
+        // }
+        // func('1');
+
+        /*3*/
+        // var arr = [6, 5, '草莓大福', false, undefined, '抹茶拿鐵', [], function () { }, {}];
+
+        // for (var i = 0; i < arr.length; i++) {
+        //     if (arr[i] instanceof Array == true) {
+        //         console.log('Array');
+        //     } else {
+        //         console.log(typeof arr[i]);
+        //     }
+        // }
+
+        /*小試身手*/
+        // var a = 10;
+        // if(a<100){
+        //     var b = 20;
+        // }
+        // console.log(b);
+
+        // var func = function(){
+        //     var str1 = 'funcString';
+        //     var func2 =function(){
+        //         console.log('str1 ' + str1);
+        //     }
+        //     func2();
+        // };
+        // func();
+
+        // str = 'string';
+        // var func = function(){
+        //     var str = 'funcString';
+        //     console.log('func get window.str=' + window.str);
+        //     console.log('func get str =' + str);
+
+        // };
+        // console.log('before =' + str);
+        // func();
+        // console.log('after =' + str);
+
+        // for(var i = 1; i <= 3;i++){
+        //     setTimeout(function(){
+        //         console.log(i)
+        //     },1000);
+
+        // }
+
+
+        /*p.99*/
+
+        const ArrayList = function(){
+            const list = [];
+            const add =function(data){
+                list.push(data);
+            };
+            const get = function(ind){
+                return list[ind];
+            };
+            const functions = {
+                'add':add,
+                'get':get
+            };
+            return functions;
+        }
+
+        const datas = new ArrayList();
+        datas.add('AAA');
+        datas.get(0);
+
+
+    </script>
+</head>
+
+</html>
