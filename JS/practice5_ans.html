@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<script type="text/javaScript">	
+		const bigObj = {
+			firstName : 'Dark' 
+			, lastName : 'Liu' 
+			, sex: 'M' 
+			, weight: 80 
+			, married: true 
+			, workExp:[ { name:'cathay life insurence' , during: 8 } , { name:'cathay united bank' , during: 6} ] 
+			, skill : ['SQL','Java','JavaScript'] };
+				
+
+		//　設定顯示的縮排字符
+		const charPrintedAtFront = '　';
+		
+		// 全域變數，紀錄現在行數應該要有多少縮排字符
+		let frontBlankCount = -1;
+		
+		
+		// 依據全域變數 frontBlankCount 列印出縮排字符		
+		const printFrontBlank = function() {
+			for (let i = 0; i < frontBlankCount; i++) {
+				document.write(charPrintedAtFront);
+			}
+		};
+
+		/*
+		* 將傳入變數的直列印出來
+		* ---inputs-------------
+		* inputValue - 要解析的物件
+		*/
+		const printObject = function(inputValue) {
+			// 每次進入此function時，行數縮排+1
+			frontBlankCount++;
+
+			// Object : 因為Aarry跟Object都會判斷成Object...所以要再次判斷
+			if (inputValue instanceof Array) {
+				// 型態為 Object - Array : 印出每個內容的序號跟值
+				document.write('(Array)[ </br>');
+				for (let i = 0; i < inputValue.length; i++) {
+					printFrontBlank();
+					document.write('　' + i + '　=　');
+					printObject(inputValue[i]);  // <----- 採用遞迴解析，將值列印出來
+				}
+				printFrontBlank();
+				document.write('] </br>');
+
+			} else if (inputValue instanceof Object) {
+				// 型態為 Object - Object : 印出每個內容的Key跟值
+				document.write('(Object){ </br>');
+				for (let key in inputValue) {
+					printFrontBlank();
+					document.write('　' + key + '　=　');
+					printObject(inputValue[key]);  // <----- 採用遞迴解析，將值列印出來
+				}
+				printFrontBlank();
+				document.write('} </br>');
+
+			} else {
+				// 基本型態：印出型態跟值
+				document.write('(' + typeof (inputValue) + ') ' + inputValue + '</br>');
+
+			} 
+			
+			// 離開前，行數縮排-1
+			frontBlankCount--;
+		}
+		
+		//此指令能輸出資訊到頁面上
+		document.writeln('<h1>Practice 5</h1>');
+		printObject(bigObj);	
+		
+	</script>
+</head>
+<body>
+</body>
+
+</html>

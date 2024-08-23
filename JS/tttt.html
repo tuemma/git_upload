@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>textContent 範例</title>
+</head>
+<body>
+    <div id="example">這是 <b>原始</b> 內容。</div>
+    <script>
+        // 獲取元素
+        var element = document.getElementById('example');
+
+        // 使用 textContent 來獲取內容
+        console.log(element.textContent); // 輸出: 這是 原始 內容。
+
+        // 使用 textContent 來設置內容
+        element.textContent = '這是新內容。';
+        // 現在 <div> 的內容是：這是新內容。
+    </script>
+</body>
+</html>

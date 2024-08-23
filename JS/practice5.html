@@ -1,8 +1,9 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset=utf-8>
-    <script type="text/javaScript">	
+    <script type="text/javaScript">
         const bigObj = {
 			firstName : 'Dark' 
 			, lastName : 'Liu' 
@@ -13,11 +14,36 @@
 			, skill : ['SQL','Java','JavaScript'] };
 
         
-        
-        const printFunc = function(data){            
-            // 請在此解析bigObj
 
-        };        
+        const printFunc = function(data){ 
+            // 請在此解析bigObj
+            
+            for (const value in data){
+                if(data instanceof Array){
+                    
+                        document.writeln("(array)" + value);
+                    
+                // document.write("(Object)" + value);
+
+
+                // for (const i=0; i<data.length ;i++){
+                //     // document.write(i)
+                //     printFunc(data[i]) ;   
+                // }
+                }
+                else if(data instanceof Object){
+                document.writeln("(object)" + value)
+                }
+            // else{
+            //     document.writeln(typeof data);
+            //     document.write(data)
+
+            // }
+
+            }
+                 
+    }
+
        
         //此指令能輸出資訊到頁面上
         document.writeln('<h1>Practice 5</h1>');
@@ -25,6 +51,8 @@
 		
     </script>
 </head>
+
 <body>
 </body>
+
 </html>

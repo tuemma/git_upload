@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+    <script type="text/javascript"></script>
+    <script>
+        window.onload = function () {
+
+            let count = 0;
+            let manufacturer = document.getElementById("manufacturer");
+            let category = document.getElementById("category");
+            let minPrice = document.getElementById("minprice");
+            let price = document.getElementById("price");
+
+            document.getElementById("add").onclick = function () {
+                if ((manufacturer.value.trim() === "") || (category.value.trim() === "")) {
+                    alert("製造商、類別不可空白");
+                }
+                else {
+                    const tbody = document.getElementById("addtable").getElementsByTagName("tbody")[0];   //選擇第一個 tbody 元素
+                    const newTr = document.createElement("tr");
+
+                    //第1個td(radio按鈕) 
+                    const radioTd = document.createElement("td");
+                    const radio = document.createElement("input");
+                    radio.type = "radio";
+                    radio.name = "show";
+                    radioTd.appendChild(radio);
+                    newTr.appendChild(radioTd);
+
+                    //第2個td(序號)
+                    let numberTd = document.createElement("td");
+                    numberTd.setAttribute('class', 'order');
+                    numberTd.textContent = ++count;
+                    newTr.appendChild(numberTd);
+
+                    //第3個td(製造商)
+                    const manufacturerTd = document.createElement("td");
+                    manufacturerTd.textContent = manufacturer.value;
+                    newTr.appendChild(manufacturerTd);
+
+                    //第4個td(類別)
+                    const categoryTd = document.createElement("td");
+                    categoryTd.textContent = category.value;
+                    newTr.appendChild(categoryTd);
+
+                    //第5個td(底價)
+                    const minPriceTd = document.createElement("td");
+                    minPriceTd.textContent = minPrice.value;
+                    newTr.appendChild(minPriceTd);
+
+                    //第6個td(售價)
+                    const priceTd = document.createElement("td");
+                    priceTd.textContent = price.value;
+                    newTr.appendChild(priceTd);
+
+                    //第7個td(button按鈕)
+                    const buttonTd = document.createElement("td");
+                    const button = document.createElement("button");
+                    button.type = "button";
+                    button.name = "delete";
+                    button.textContent = "刪除";
+                    buttonTd.appendChild(button);
+                    newTr.appendChild(buttonTd);
+
+                    tbody.appendChild(newTr);
+
+                    button.onclick = function () {  //刪除列 序號重整
+                        const delete1 = button.parentNode.parentNode;  //tr
+                        const delete2 = delete1.parentNode;  //tbody
+                        delete2.removeChild(delete1);
+
+                        const recount = document.getElementsByClassName("order");
+                        for (let j = 0; j < recount.length; j++) {
+                            // console.log(recount[j]);
+                            recount[j].innerHTML = j + 1;
+                        }
+                        count = recount.length;
+                    }
+
+                    radio.onclick = function () {  //按radio 顯示資訊
+                        const checks = document.getElementsByName("show");
+                        for (let i = 0; i < checks.length; i++) {
+                            let checkCC = checks[i];
+                            if (checkCC.checked) {
+                                const checkRow = radio.parentNode.parentNode;
+                                const details = checkRow.getElementsByTagName("td");
+
+                                manufacturer.value = details[2].textContent;
+                                category.value = details[3].textContent;
+                                minPrice.value = details[4].textContent;
+                                price.value = details[5].textContent;
+                            }
+                        }
+                    }
+                }
+            };
+
+
+
+            document.getElementById("change").onclick = function () {  //修改
+
+                const checkradio = document.querySelector('input[name="show"]:checked');
+                // console.log(checkradio);
+
+                if (!checkradio) {
+                    alert("請點選radio");
+                }
+                if ((manufacturer.value.trim() === "") || (category.value.trim() === "")) {
+                    alert("製造商、類別不可空白");
+                }
+
+                const changeRow = checkradio.parentNode.parentNode;
+                const rowDetails = changeRow.getElementsByTagName("td");
+
+                rowDetails[2].innerHTML = manufacturer.value;
+                rowDetails[3].innerHTML = category.value;
+                rowDetails[4].innerHTML = minPrice.value;
+                rowDetails[5].innerHTML = price.value;
+            };
+
+            document.getElementById("clean").onclick = function () {  //清空 只剩表頭
+                const content = document.getElementById("addtable").getElementsByTagName("tbody")[0];
+                content.innerHTML = '';
+                count = 0;
+            };
+
+        }
+    </script>
+</head>
+
+<body>
+    <form>
+        <div>
+            <table border="1">
+                <tr>
+                    <td>製造商</td>
+                    <td><input type="text" id="manufacturer" /></td>
+                    <td>類別</td>
+                    <td><input type="text" id="category" /></td>
+                </tr>
+
+                <tr>
+                    <td>底價</td>
+                    <td><input type="text" id="minprice" /></td>
+                    <td>售價</td>
+                    <td><input type="text" id="price" /></td>
+                </tr>
+
+                <tr>
+                    <td colspan="4">
+                        <button type="button" id="add">新增</button>
+                        <button type="button" id="change">修改</button>
+                        <button type="reset" id="clean">清空</button>
+                    </td>
+                </tr>
+            </table><br>
+        </div>
+        <div>
+            <table border="1" id="addtable">
+                <thead>
+                    <tr>
+                        <td>　　</td>
+                        <td>序號</td>
+                        <td>製造商</td>
+                        <td>類別</td>
+                        <td>底價</td>
+                        <td>售價</td>
+                        <td>　　　</td>
+                    </tr>
+                </thead>
+                <tbody id="content"></tbody>
+            </table>
+        </div>
+    </form>
+</body>
+
+</html>

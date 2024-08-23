@@ -15,6 +15,7 @@
             }
         }
 
+
         document.getElementById("btn").onclick = function () {
             const nm = document.getElementById("Name").value;
             if (nm == "") {  //
@@ -25,26 +26,40 @@
 
                 const where = document.getElementById("where").value;
 
-                const exp = document.querySelectorAll('input[name=yesno]');
-                const workexperience = '';
-                for (let workexp of exp) {
+                const experience = document.querySelectorAll('input[name="yesno"]');
+                let workexperience = '';
+
+                for (const workexp of experience) {
                     if (workexp.checked) {
                         workexperience = workexp.value;
                     }
                 }
 
-                const lang = document.querySelectorAll('input[name=language]');
-                // for()
+                const language = document.querySelectorAll('input[name=language]');
+                const otherlang = document.getElementById("otherinput");
+                let langg = '';
 
-                if (lang.value == '其他') {
+                for (const lang of language) {
+                    if (lang.checked) {
 
+                        if (lang.value != "其他") {
+                            langg += lang.value + '　';
+                        } else {
+                            langg += otherlang.value + '　';
+                        }
+                    }
                 }
-
-                alert('英文名:' + nm + '\n哪裡人:' + where + '\n正式工作經驗:' + workexperience + '\n語言:' + lang);
-
+                const confirmMes = '英文名:' + nm + '\n哪裡人:' + where + '\n正式工作經驗:' + workexperience + '\n語言:' + langg;
+                if (confirm(confirmMes)) {
+                    alert('Hi~' + nm);
+                } else {
+                    alert('請輸入英文名');
+                }
+                // alert('英文名:' + nm + '\n哪裡人:' + where + '\n正式工作經驗:' + workexperience +'\n語言:' + langg);
             }
         }
     };
+
 
 </script>
 
@@ -103,7 +118,6 @@
         </table>
 
         <button type="button" id="btn">Say Hi~</button>
-
 
 
     </form>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script text="javascript" src="HashMap.js"> </script>
+    <script>
+
+        window.onload = function () {
+
+            const map = new HashMap();
+            let keyK = document.getElementById("keykey");
+            let valueV = document.getElementById("valuevalue");
+
+            document.getElementById("putput").onclick = function () {
+
+                if ((map.contains(keyK.value.trim())) || keyK.value.trim() == "") {
+                    alert("KEY不能空白、不能重複!");
+                    return;
+                }
+                else {
+                    document.getElementById("result").hidden = false;
+                    document.getElementById("content").innerHTML = '';
+
+                    map.put(keyK.value, valueV.value);
+                    const keys = map.keys();
+                    let showMap = '';
+                   
+                    for (let i = 0; i < keys.length; i++) {
+                        showMap += '　　';
+                        showMap += keys[i];
+                        showMap += ':';
+                        showMap += map.get(keys[i]);
+                        showMap += '<br>';
+                    }
+                    document.getElementById("content").innerHTML = showMap;
+                    document.getElementById("keykey").value = '';
+                    document.getElementById("valuevalue").value = '';
+                }
+            }
+            document.getElementById("clearclear").onclick = function () {
+                document.getElementById("result").hidden = true;
+                map.clear();
+            };
+        }
+
+    </script>
+</head>
+
+<body>
+    <form>
+
+        KEY 　　<input type="text" id="keykey" /><br>
+        VALUE　<input type="text" id="valuevalue" /><br>
+        ______________________________________________<br>
+        <br>
+        <button type="button" id="putput">PUT</button>
+        <button type="button" id="clearclear">CLEAR</button><br>
+        ______________________________________________
+        <div id="result" hidden>
+            <span>【RESULT】</span><br>
+            <span id="content"></span>
+        </div>
+    </form>
+</body>
+
+</html>
